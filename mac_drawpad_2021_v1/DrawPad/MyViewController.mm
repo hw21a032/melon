@@ -256,7 +256,7 @@ static MyViewController *sInstance = nil;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         // メモリバッファ（が設定されたビットマップコンテキスト）をCore Graphics画像に変換し、クリップボードにセットする。
         @autoreleasepool {
-            CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+            CGImageRef cgImage = CGBitmapContextCreateImage(self->bitmapContext);
             NSImage *nsImage = [[NSImage alloc] initWithCGImage:cgImage size:NSMakeSize(640, 480)];
             NSPasteboard *pboard = [NSPasteboard generalPasteboard];
             [pboard clearContents];
@@ -272,7 +272,7 @@ static MyViewController *sInstance = nil;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         @autoreleasepool {
             // メモリバッファ（が設定されたビットマップコンテキスト）を画像に変換
-            CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+            CGImageRef cgImage = CGBitmapContextCreateImage(self->bitmapContext);
             NSImage *nsImage = [[NSImage alloc] initWithCGImage:cgImage size:NSMakeSize(640, 480)];
             NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc]
                                        initWithBitmapDataPlanes:NULL
@@ -347,15 +347,15 @@ static MyViewController *sInstance = nil;
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         // メモリバッファ（が設定されたビットマップコンテキスト）をCore Graphics画像に変換し、ビューにセットする。
-        CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+        CGImageRef cgImage = CGBitmapContextCreateImage(self->bitmapContext);
         [self.myImageView setImage:cgImage];
         CGImageRelease(cgImage);
 
         // フレームレート表示を更新
         if (gIsPausing) {
             [self.view.window setTitle:[NSString stringWithFormat:@"DrawPad (Pausing) %.1ffps", gFrameRate]];
-            [pauseMenuItem setTitle:@"Continue"];
-            [stepOverMenuItem setEnabled:YES];
+            [self->pauseMenuItem setTitle:@"Continue"];
+            [self->stepOverMenuItem setEnabled:YES];
         }
     }];
     [[NSOperationQueue mainQueue] waitUntilAllOperationsAreFinished];
@@ -382,8 +382,8 @@ static MyViewController *sInstance = nil;
     if (hasPaused && !gIsPausing) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.view.window setTitle:[NSString stringWithFormat:@"DrawPad (Running) %.1ffps", gFrameRate]];
-            [pauseMenuItem setTitle:@"Pause"];
-            [stepOverMenuItem setEnabled:NO];
+            [self->pauseMenuItem setTitle:@"Pause"];
+            [self->stepOverMenuItem setEnabled:NO];
         }];
     }
 
