@@ -11,7 +11,7 @@ void DrawMain()
     for (int i = 0; i < 5; i++) {
         FillCircle(i*100-200, -190, 30, kColorBlue, M_PI/6+i*M_PI/2, -M_PI/6+i*M_PI/2);
     }
-//hello konnitiha
+//hello konnitiha wa-i
     for (int x = -100; x <= 100; x+=10) {
         DrawCircle(x, 0, 150, kColorBlue);
     }
