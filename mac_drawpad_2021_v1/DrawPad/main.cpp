@@ -11,7 +11,7 @@ void DrawMain()
     for (int i = 0; i < 5; i++) {
         FillCircle(i*100-200, -190, 30, kColorBlue, M_PI/6+i*M_PI/2, -M_PI/6+i*M_PI/2);
     }
-
+//hello konnitiha wa-i
     for (int x = -100; x <= 100; x+=10) {
         DrawCircle(x, 0, 150, kColorBlue);
     }
@@ -36,5 +36,6 @@ void DrawMain()
     DrawText("Hello, world!!", -12*14/2, -44, kColorRed);
     Sleep(0.5f);
     DrawText("Hello, world!!", -12*14/2, -66, kColorGray);
+    DrawCircle(100, 0, 50, kColorWhite);
 }
 
