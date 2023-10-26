@@ -1,6 +1,6 @@
 #include "DrawPad.hpp"
 #include <math.h>
-
+//wa-i
 void DrawMain()
 {
     Clear(kColorBlack);
